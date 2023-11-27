@@ -4,13 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Screen {
-    Integer id ;
-    String name ;
+    private String id ;
+    private String name ;
     List<Seat> seats ;
+    private Theatre theatre;
 
-    public Screen(Integer id, String name) {
+    public Screen(String id, String name, Theatre theatre) {
         this.id = id ;
         this.name = name ;
+        this.theatre = theatre;
         this.seats = new ArrayList<>();
     }
 

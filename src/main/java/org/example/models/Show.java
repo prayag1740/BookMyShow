@@ -1,13 +1,15 @@
 package org.example.models;
 
+import java.time.LocalTime;
+
 public class Show {
 
     private Movie movie ;
     private Screen screen;
-    private String startTime ;
+    private LocalTime startTime ;
     private Integer durationInMinutes ;
 
-    public Show(Movie movie, Screen screen, String startTime, Integer durationInMinutes) {
+    public Show(Movie movie, Screen screen, LocalTime startTime, Integer durationInMinutes) {
         this.movie = movie ;
         this.screen = screen ;
         this.startTime = startTime ;

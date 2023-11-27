@@ -23,7 +23,6 @@ public class Booking {
         }
         this.bookingStatus = BookingStatus.Confimed ;
     }
-
     public void expireBooking() {
         if (this.bookingStatus != BookingStatus.Created) {
             throw new InvalidBookingStatus();

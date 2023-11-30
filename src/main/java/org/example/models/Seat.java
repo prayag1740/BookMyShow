@@ -9,4 +9,8 @@ public class Seat {
         this.rowNo = rowNo ;
         this.seatNo = seatNo ;
     }
+
+    public String getId() {
+        return id;
+    }
 }

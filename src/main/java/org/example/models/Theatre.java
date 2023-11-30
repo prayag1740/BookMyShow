@@ -19,4 +19,7 @@ public class Theatre {
         this.screens.add(screen) ;
     }
 
+    public String getId() {
+        return id;
+    }
 }

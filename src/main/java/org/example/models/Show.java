@@ -1,21 +1,31 @@
 package org.example.models;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public class Show {
 
-    private Movie movie ;
-    private Screen screen;
-    private LocalTime startTime ;
-    private Integer durationInMinutes ;
+    private final String id ;
 
-    public Show(Movie movie, Screen screen, LocalTime startTime, Integer durationInMinutes) {
+    private final Movie movie ;
+    private final Screen screen;
+    private final LocalDateTime startTime ;
+    private final Integer duration ;
+
+    public Show(String id, Movie movie, Screen screen, LocalDateTime startTime, Integer duration) {
+        this.id = id ;
         this.movie = movie ;
         this.screen = screen ;
         this.startTime = startTime ;
-        this.durationInMinutes = durationInMinutes ;
+        this.duration = duration ;
     }
 
+    public LocalDateTime getStartTime() {
+        return startTime;
+    }
 
+    public String getId() {
+        return id;
+    }
 
 }

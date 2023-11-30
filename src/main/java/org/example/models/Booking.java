@@ -5,8 +5,8 @@ import org.example.exceptions.InvalidBookingStatus;
 import java.util.List;
 
 public class Booking {
-    private Show show ;
-    private User user ;
+    private final Show show ;
+    private final User user ;
     private List<Seat> seatsBooked ;
     private BookingStatus bookingStatus;
 

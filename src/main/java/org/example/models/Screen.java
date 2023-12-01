@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Screen {
-    private String id ;
-    private String name ;
-    private final List<Seat> seats ;
+    private final String id ;
+    private final String name ;
+    private  List<Seat> seats ;
     private final List<Show> shows ;
-    private Theatre theatre;
+    private final Theatre theatre;
 
     public Screen(String id, String name, Theatre theatre) {
         this.id = id ;
@@ -28,5 +28,9 @@ public class Screen {
 
     public List<Show> getShows() {
         return shows;
+    }
+
+    public List<Seat> getSeats() {
+        return seats;
     }
 }

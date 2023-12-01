@@ -4,10 +4,9 @@ import org.example.exceptions.InvalidEmailException;
 import org.example.utilities.EmailUtility;
 
 public class User {
-    private Integer id ;
-    private String name ;
-    private String email ;
-
+    private final Integer id ;
+    private final String name ;
+    private final String email ;
     public User(Integer id, String name, String email) {
         if (!EmailUtility.validateEmail(email)) {
             throw new InvalidEmailException();

@@ -28,4 +28,7 @@ public class Show {
         return id;
     }
 
+    public Screen getScreen() {
+        return screen;
+    }
 }

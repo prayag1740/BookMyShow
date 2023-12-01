@@ -4,6 +4,7 @@ import org.example.exceptions.NotFoundException;
 import org.example.models.Movie;
 
 import java.util.HashMap;
+import java.util.UUID;
 
 public class MovieService {
 
@@ -19,6 +20,13 @@ public class MovieService {
             throw new NotFoundException(MOVIE_CONST) ;
         }
         return this.movies.get(movieId) ;
+    }
+
+    public Movie createMovie(String name) {
+        String movieId = UUID.randomUUID().toString();
+        Movie movie = new Movie(movieId, name) ;
+        this.movies.put(movieId, movie) ;
+        return movie ;
     }
 
 }

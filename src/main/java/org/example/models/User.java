@@ -15,4 +15,18 @@ public class User {
         this.name = name ;
         this.email = email ;
     }
+
+    public Integer getId() {
+        return id;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }

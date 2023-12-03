@@ -21,8 +21,8 @@ public class ShowService {
     }
 
     public Show getShow(String showID) {
-        if (!shows.containsKey(showID)) {
-            throw new NotFoundException("SHOW_CONST");
+        if (!this.shows.containsKey(showID)) {
+            throw new NotFoundException(SHOW_CONST);
         }
         return this.shows.get(showID) ;
     }
@@ -32,7 +32,9 @@ public class ShowService {
             throw new SlotAlreadyOccupiedException();
         }
         String showId = UUID.randomUUID().toString();
-        return new Show(showId, movie, screen, startTime, duration) ;
+        Show show = new Show(showId, movie, screen, startTime, duration) ;
+        this.shows.put(showId, show) ;
+        return show ;
     }
 
     public List<Show> getShowsForScreen(Screen screen) {

@@ -6,15 +6,20 @@ import org.example.services.TheatreService;
 
 public class TheatreController {
 
-    private final TheatreService theatreService = new TheatreService();
-    private String createTheatre(String theatreName) {
+    private final TheatreService theatreService ;
+
+    public TheatreController(TheatreService theatreService) {
+
+        this.theatreService = theatreService ;
+    }
+    public String createTheatre(String theatreName) {
         return theatreService.createTheatre(theatreName).getId();
     }
-    private String createScreenInTheatre(String screenName, String theatreId) {
+    public String createScreenInTheatre(String screenName, String theatreId) {
         Theatre theatre = theatreService.getTheatre(theatreId) ;
         return theatreService.createScreenInTheatre(screenName, theatre).getId();
     }
-    private String createSeatInScreen(Integer rowNo, Integer seatNo, String screenId) {
+    public String createSeatInScreen(Integer rowNo, Integer seatNo, String screenId) {
         Screen screen = theatreService.getScreen(screenId) ;
         return theatreService.createSeatInScreen(rowNo, seatNo, screen).getId() ;
     }

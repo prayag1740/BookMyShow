@@ -9,15 +9,17 @@ import java.util.HashMap;
 import java.util.UUID;
 
 public class TheatreService {
-
     private static String THEATRE_CONST = "theatre" ;
     private static String SCREEN_CONST = "screen" ;
+    private static String SEAT_CONST = "seat" ;
     private final HashMap<String, Theatre> theatres ;
     private final HashMap<String, Screen> screens ;
+    private final HashMap<String, Seat> seats ;
 
     public TheatreService() {
         this.theatres = new HashMap<>();
         this.screens = new HashMap<>();
+        this.seats = new HashMap<>();
     }
 
     public Theatre createTheatre(String theatreName) {
@@ -34,8 +36,15 @@ public class TheatreService {
         return theatres.get(theatreId);
     }
 
+    public Seat getSeat(String seatId) {
+        if (! this.seats.containsKey(seatId)) {
+            throw new NotFoundException(SEAT_CONST) ;
+        }
+        return this.seats.get(seatId) ;
+    }
+
     public Screen getScreen(String screenId) {
-        if (!screens.containsKey(screenId)) {
+        if (!this.screens.containsKey(screenId)) {
             throw new NotFoundException(SCREEN_CONST);
         }
         return screens.get(screenId);
@@ -55,6 +64,7 @@ public class TheatreService {
     public Seat createSeatInScreen(Integer rowNo, Integer seatNo, Screen screen) {
         String seatId = UUID.randomUUID().toString();
         Seat newSeat = new Seat(seatId, rowNo, seatNo) ;
+        this.seats.put(seatId, newSeat) ;
         screen.addSeats(newSeat);
         return newSeat ;
     }

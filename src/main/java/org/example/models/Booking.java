@@ -48,4 +48,8 @@ public class Booking {
     public BookingStatus getBookingStatus() {
         return bookingStatus;
     }
+
+    public User getUser() {
+        return user;
+    }
 }

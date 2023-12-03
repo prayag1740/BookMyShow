@@ -4,21 +4,25 @@ import org.example.models.Movie;
 import org.example.models.Screen;
 import org.example.models.Seat;
 import org.example.models.Show;
-import org.example.services.MovieService;
-import org.example.services.SeatAvailabilityService;
-import org.example.services.ShowService;
-import org.example.services.TheatreService;
+import org.example.providers.SeatLockProvider;
+import org.example.services.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ShowController {
-    private  ShowService showService = new ShowService() ;
-    private TheatreService theatreService = new TheatreService();
-    private MovieService movieService = new MovieService();
+    private  final ShowService showService ;
+    private final TheatreService theatreService ;
+    private final MovieService movieService ;
+    private final SeatAvailabilityService seatAvailabilityService ;
 
-    private SeatAvailabilityService seatAvailabilityService = new SeatAvailabilityService();
+    public ShowController(ShowService showService, TheatreService theatreService, SeatAvailabilityService seatAvailabilityService, MovieService movieService ) {
+        this.showService = showService;
+        this.theatreService = theatreService;
+        this.movieService = movieService;
+        this.seatAvailabilityService = seatAvailabilityService ;
+    }
 
     public String createShow(String movieId, String screenId, LocalDateTime startTime, Integer duration) {
         Screen screen = theatreService.getScreen(screenId) ;

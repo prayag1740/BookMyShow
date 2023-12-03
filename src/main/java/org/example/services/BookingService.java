@@ -1,8 +1,10 @@
 package org.example.services;
 
+import org.example.exceptions.BadRequestException;
 import org.example.exceptions.NotFoundException;
 import org.example.exceptions.SeatUnavailableException;
 import org.example.models.*;
+import org.example.providers.SeatLockProvider;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,9 +15,11 @@ public class BookingService {
 
     private HashMap<String, Booking> allbookings ;
     private static String MOVIE_CONST = "Movie" ;
+    private final SeatLockProvider seatLockProvider ;
 
-    public BookingService() {
+    public BookingService(SeatLockProvider seatLockProvider) {
         this.allbookings = new HashMap<>();
+        this.seatLockProvider = seatLockProvider;
     }
 
     public Booking getBooking(String bookingId) {
@@ -50,6 +54,7 @@ public class BookingService {
         if (ifAnySeatAlreadyBooked(show, seatsBooked)) {
             throw new SeatUnavailableException();
         }
+        seatLockProvider.lockSeats(show, seatsBooked, user);
         String bookingID = UUID.randomUUID().toString();
         Booking booking = new Booking(bookingID, show, user, seatsBooked) ;
         this.allbookings.put(bookingID, booking) ;
@@ -65,6 +70,18 @@ public class BookingService {
             }
         }
         return false ;
+    }
+
+    public void confirmBooking(Booking booking, User user) {
+        if (!booking.getUser().equals(user)) {
+            throw new BadRequestException();
+        }
+        for (Seat s : booking.getSeatsBooked()) {
+            if (!seatLockProvider.validateLock(booking.getShow(), s, user)) {
+                throw new BadRequestException();
+            }
+        }
+        booking.confirmBooking();
     }
 
 }

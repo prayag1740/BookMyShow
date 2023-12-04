@@ -1,8 +1,11 @@
 package org.example.controllers;
 
 import org.example.models.Screen;
+import org.example.models.Seat;
 import org.example.models.Theatre;
 import org.example.services.TheatreService;
+
+import java.util.List;
 
 public class TheatreController {
 
@@ -22,5 +25,10 @@ public class TheatreController {
     public String createSeatInScreen(Integer rowNo, Integer seatNo, String screenId) {
         Screen screen = theatreService.getScreen(screenId) ;
         return theatreService.createSeatInScreen(rowNo, seatNo, screen).getId() ;
+    }
+
+    public List<Seat> getAllSeatsInScreen(String screenId) {
+        Screen screen = theatreService.getScreen(screenId) ;
+        return theatreService.getAllSeatsforScreen(screen) ;
     }
 }

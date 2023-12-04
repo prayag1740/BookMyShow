@@ -4,6 +4,7 @@ import org.example.models.Seat;
 import org.example.models.Show;
 import org.example.providers.SeatLockProvider;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SeatAvailabilityService {
@@ -20,8 +21,13 @@ public class SeatAvailabilityService {
     public List<Seat> getAvailableSeats(Show show) {
         List<Seat> allSeats = show.getScreen().getSeats() ;
         List<Seat> unAvailableSeats = getUnavailableSeats(show);
-        allSeats.removeAll(unAvailableSeats) ;
-        return allSeats ;
+        List<Seat> remainingSeats = new ArrayList<>();
+        for (Seat s : allSeats) {
+            if (!unAvailableSeats.contains(s)) {
+                remainingSeats.add(s);
+            }
+        }
+        return remainingSeats ;
     }
 
     public List<Seat> getUnavailableSeats(Show show) {

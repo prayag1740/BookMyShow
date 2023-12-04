@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BaseTest {
+public abstract class BaseTest {
 
     protected BookingController bookingController ;
     protected MovieController movieController ;
@@ -49,6 +49,5 @@ public class BaseTest {
         return theatreController.createScreenInTheatre("Screen1", theatreId) ;
     }
 
-
-
+    public abstract void executeTests() ;
 }

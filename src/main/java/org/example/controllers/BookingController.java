@@ -1,5 +1,6 @@
 package org.example.controllers;
 
+import org.example.models.Booking;
 import org.example.models.Seat;
 import org.example.models.Show;
 import org.example.models.User;
@@ -27,10 +28,16 @@ public class BookingController {
         String bookingId = UUID.randomUUID().toString();
         List<Seat> seatsBooked = new ArrayList<>() ;
         for (String s : seatIds) {
-            seatsBooked.add(theatreService.getSeat(s));
+            Seat orgSeat = theatreService.getSeat(s);
+            seatsBooked.add(orgSeat);
         }
         Show show = showService.getShow(showId) ;
         return bookingService.createBooking(show, user, seatsBooked).getId() ;
+    }
+
+    public List<Booking> getAllBookings(String showId) {
+        Show show = showService.getShow(showId) ;
+        return bookingService.getAllBooking(show) ;
     }
 
 

@@ -6,9 +6,6 @@ import org.example.models.SeatLock;
 import org.example.models.Show;
 import org.example.models.User;
 
-
-import java.time.LocalDateTime;
-
 import java.util.*;
 
 public class InMemorySeatLockProvider implements SeatLockProvider {
@@ -58,10 +55,10 @@ public class InMemorySeatLockProvider implements SeatLockProvider {
         this.locks.get(show).put(seat, seatLock) ;
     }
     private void unlockSeat(Show show, Seat seat) {
-        if (!locks.containsKey(show)) {
+        if (!this.locks.containsKey(show)) {
             return ;
         }
-        locks.get(show).remove(seat) ;
+        this.locks.get(show).remove(seat) ;
     }
     private boolean isSeatLocked(Show show, Seat seat) {
         return this.locks.containsKey(show) && this.locks.get(show).containsKey(seat) && !this.locks.get(show).get(seat).isLockExpired();

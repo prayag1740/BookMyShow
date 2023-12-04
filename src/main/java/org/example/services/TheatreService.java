@@ -6,6 +6,7 @@ import org.example.models.Seat;
 import org.example.models.Theatre;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 public class TheatreService {
@@ -67,5 +68,11 @@ public class TheatreService {
         this.seats.put(seatId, newSeat) ;
         screen.addSeats(newSeat);
         return newSeat ;
+    }
+
+    public List<Seat> getAllSeatsforScreen(Screen screen) {
+        System.out.println("debuggg " + this.seats.size());
+        System.out.println("debuggg2 " + screen.getSeats().size());
+        return screen.getSeats();
     }
 }

@@ -11,7 +11,7 @@ import java.util.Map;
 public class PaymentService {
 
     private final Map<String, Integer> bookingFails ;
-    private static Integer MAX_RETRIES = 3 ;
+    private static Integer MAX_RETRIES = 0 ;
     private final SeatLockProvider seatLockProvider ;
 
     public PaymentService(SeatLockProvider seatLockProvider) {
